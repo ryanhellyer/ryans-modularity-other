@@ -24,6 +24,7 @@ function init()
 
     // Register modules here
     $package->addModule(new RyansOtherModule\RyansOtherModule());
+//    $package->XXX(new RyansOtherModule\RyansOtherModule());
 
     $package->boot();
 }
