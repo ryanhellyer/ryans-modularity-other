@@ -17,16 +17,26 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     require_once __DIR__ . '/vendor/autoload.php';
 }
 
-function init()
+function init(): Package
 {
-    $properties = PluginProperties::new(__FILE__);
-    $package = Package::new($properties);
-
-    // Register modules here
-    $package->addModule(new RyansOtherModule\RyansOtherModule());
-//    $package->XXX(new RyansOtherModule\RyansOtherModule());
-
+    $package = package();
     $package->boot();
+
+    return $package;
 }
 
 add_action('plugins_loaded', __NAMESPACE__ . '\\init');
+
+function package(): Package {
+    static $package;
+
+    if (!$package) {
+        $properties = PluginProperties::new(__FILE__);
+        $package = Package::new($properties);
+
+        // Register modules here
+        $package->addModule(new RyansOtherModule\RyansOtherModule());
+    }
+
+    return $package;
+}
