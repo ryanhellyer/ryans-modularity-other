@@ -20,6 +20,10 @@ if (file_exists(__DIR__ . '/vendor/autoload.php')) {
 function init(): Package
 {
     $package = package();
+
+    // Register modules here
+    $package->addModule(new RyansOtherModule\RyansOtherModule());
+
     $package->boot();
 
     return $package;
@@ -33,9 +37,6 @@ function package(): Package {
     if (!$package) {
         $properties = PluginProperties::new(__FILE__);
         $package = Package::new($properties);
-
-        // Register modules here
-        $package->addModule(new RyansOtherModule\RyansOtherModule());
     }
 
     return $package;

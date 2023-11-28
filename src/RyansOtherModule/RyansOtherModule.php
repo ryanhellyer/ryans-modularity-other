@@ -5,13 +5,19 @@ namespace RyansModularityOther\RyansOtherModule;
 use Inpsyde\Modularity\Module\ExecutableModule;
 use Inpsyde\Modularity\Module\ServiceModule;
 use Psr\Container\ContainerInterface;
+use Inpsyde\Modularity\Module\ModuleClassNameIdTrait;
 
 class RyansOtherModule implements ExecutableModule, ServiceModule
 {
+    use ModuleClassNameIdTrait;
+
+    /*
+    THIS IS NOT NEEDED SINCE WE'RE USING ModuleClassNameIdTrait which provides this method automatically based on the class name.
     public function id(): string
     {
         return 'ryans-other-module';
     }
+    */
 
     public function services(): array
     {
@@ -22,15 +28,8 @@ class RyansOtherModule implements ExecutableModule, ServiceModule
 
     public function run(ContainerInterface $container): bool
     {
-        //add_filter('the_content', [$this, 'theContent'], 11);
+        add_action('wp_footer',function() {echo 'Just confirming that the run() method in the RyansOtherModule class is firing!';});
 
         return true;
     }
-
-    /*
-    public function theContent($content): string
-    {
-        return $content . '<p>And the other plugin is operational too!</p>';
-    }
-    */
 }

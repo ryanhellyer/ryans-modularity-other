@@ -1,5 +1,7 @@
 <?php
 
+namespace RyansModularityOther\RyansOtherModule;
+
 class ContentModifier
 {
 
